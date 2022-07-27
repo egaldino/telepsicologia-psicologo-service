@@ -12,6 +12,7 @@ public class Psychologist {
 
     @Id
     private String crp;
+    private String email;
     private String name;
 
 }
