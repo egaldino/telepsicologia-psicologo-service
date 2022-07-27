@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface PsychologistRepository extends MongoRepository<Psychologist, String> {
 
     Optional<Psychologist> findByEmail(String email);
+
+    Optional<Psychologist> findByCrp(String crp);
 }
