@@ -1,6 +1,5 @@
 package br.puc.edson.telepsicologiapsicologoservice.service;
 
-import br.puc.edson.telepsicologiapsicologoservice.dto.PsychologistDto;
 import br.puc.edson.telepsicologiapsicologoservice.model.Psychologist;
 import br.puc.edson.telepsicologiapsicologoservice.repository.PsychologistRepository;
 import org.jeasy.random.EasyRandom;
@@ -32,7 +31,7 @@ class PsychologistServiceTest {
                 .collect(Collectors.toList());
         when(repository.findAll()).thenReturn(databaseReturn);
 
-        List<PsychologistDto> result = service.listAll();
+        List<Psychologist> result = service.listAll();
 
         assertEquals(databaseReturn.size(), result.size());
         for(int i=0; i < result.size(); i++){
