@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
@@ -20,6 +21,9 @@ class PsychologistServiceTest {
 
     @Mock
     private PsychologistRepository repository;
+
+    @Mock
+    private DataCryptoService dataCryptoService;
 
     @InjectMocks
     private PsychologistService service;
@@ -30,6 +34,8 @@ class PsychologistServiceTest {
         List<Psychologist> databaseReturn = generator.objects(Psychologist.class, 5)
                 .collect(Collectors.toList());
         when(repository.findAll()).thenReturn(databaseReturn);
+
+        when(dataCryptoService.decrypt(anyString())).thenAnswer(answer -> answer.getArguments()[0]);
 
         List<Psychologist> result = service.listAll();
 
