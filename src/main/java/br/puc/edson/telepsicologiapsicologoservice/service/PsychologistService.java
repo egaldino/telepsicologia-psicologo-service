@@ -3,6 +3,7 @@ package br.puc.edson.telepsicologiapsicologoservice.service;
 import br.puc.edson.telepsicologiapsicologoservice.model.Psychologist;
 import br.puc.edson.telepsicologiapsicologoservice.repository.PsychologistRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class PsychologistService {
     }
 
     public Optional<Psychologist> findByCrp(String crp) {
-        return repository.findByCrpHash(crp).map(this::decrypt);
+        return repository.findByCrpHash(DigestUtils.sha256Hex(crp)).map(this::decrypt);
     }
 
     private Psychologist decrypt(Psychologist psychologist) {
