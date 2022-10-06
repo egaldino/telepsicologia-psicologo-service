@@ -2,6 +2,7 @@ package br.puc.edson.telepsicologiapsicologoservice.config;
 
 import br.puc.edson.telepsicologiapsicologoservice.dto.TokenValidationRequestDto;
 import br.puc.edson.telepsicologiapsicologoservice.dto.TokenValidationResponseDto;
+import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 @Component
+@Log4j
 public class JwtRequestFilter extends OncePerRequestFilter {
 
     private final RestTemplate restTemplate;
@@ -46,6 +48,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
 
         if(invalidToken) {
+            logger.error("Token invalido");
+            logger.error("URI:" + request.getRequestURI());
+            logger.error("Method:" + request.getMethod());
             response.setStatus(401);
             response.sendError(401, "Token inválido");
         } else {
