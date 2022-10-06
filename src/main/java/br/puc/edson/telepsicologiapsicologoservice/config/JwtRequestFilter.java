@@ -3,6 +3,7 @@ package br.puc.edson.telepsicologiapsicologoservice.config;
 import br.puc.edson.telepsicologiapsicologoservice.dto.TokenValidationRequestDto;
 import br.puc.edson.telepsicologiapsicologoservice.dto.TokenValidationResponseDto;
 import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -16,7 +17,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 @Component
-@Log4j
+@Slf4j
 public class JwtRequestFilter extends OncePerRequestFilter {
 
     private final RestTemplate restTemplate;
