@@ -44,8 +44,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             String jwtToken = requestTokenHeader.substring(7);
             TokenValidationRequestDto tokenValidationRequest = TokenValidationRequestDto.builder().token(jwtToken).build();
-            TokenValidationResponseDto tokenValidationResponse = restTemplate.postForObject(authApiUrl + "/validateToken",tokenValidationRequest, TokenValidationResponseDto.class);
-            invalidToken = !Objects.requireNonNull(tokenValidationResponse).getValid();
+          //  TokenValidationResponseDto tokenValidationResponse = restTemplate.postForObject(authApiUrl + "/validateToken",tokenValidationRequest, TokenValidationResponseDto.class);
+         //   invalidToken = !Objects.requireNonNull(tokenValidationResponse).getValid();
+            invalidToken = false;
         }
 
         if(invalidToken) {
